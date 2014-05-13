@@ -20,7 +20,9 @@ Only Python 3.x is tested.
 Usage
 -----
 
-GenomeDiff files are read using ``GenomeDiff.read(file)``. The ``GenomeDiff`` object contains a ``metadata`` dict with the meta data, as well as ``mutations``, ``evidence`` and ``validation`` lists—each containing records of that type. Records can be accessed through this list or by id. The ``GenomeDiff`` is iterable and iterating will return all records of all types.
+GenomeDiff files are read using ``GenomeDiff.read(file)``. The ``GenomeDiff`` object contains a ``metadata`` dict with
+the meta data, as well as ``mutations``, ``evidence`` and ``validation`` lists—each containing records of that type.
+Records can be accessed through this list or by id. ``GenomeDiff`` is iterable and iterating will return all records of all types.
 
 ::
 
