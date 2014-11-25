@@ -16,7 +16,7 @@ class GenomeDiff(object):
     def read(cls, fsock):
         gd = GenomeDiff()
 
-        for record in GenomeDiffParser(fsock):
+        for record in GenomeDiffParser(document=gd, fsock=fsock):
             if isinstance(record, Metadata):
                 gd.metadata[record.name] = record.value
             else:
