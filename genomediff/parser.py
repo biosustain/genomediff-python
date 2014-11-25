@@ -32,8 +32,8 @@ TYPE_SPECIFIC_FIELDS = {
 }
 
 class GenomeDiffParser(object):
-    def __init__(self, document=None, fsock=None):
-        self.document = document
+    def __init__(self, fsock=None, document=None):
+        self._document = document
         self._fsock = fsock
 
     @staticmethod
@@ -80,6 +80,6 @@ class GenomeDiffParser(object):
                     for k, v in (e.split('=', 1) for e in extra):
                         extra_dct[k] = self._convert_value(v)
 
-                    yield Record(type, id, self.document, parent_ids, **extra_dct)
+                    yield Record(type, id, self._document, parent_ids, **extra_dct)
                 else:
                     raise Exception('Could not parse line #{}: {}'.format(i, line))
