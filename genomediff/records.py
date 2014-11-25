@@ -20,13 +20,13 @@ class Record(object):
 
     @property
     def parents(self):
-        if not self.parents_ids is None:
+        if not self.parent_ids is None:
             return [self.document[pid] for pid in self.parent_ids]
         else:
             return []
 
     def __getattr__(self, item):
-        return self._extra[item]
+       return self._extra[item]
 
     def __repr__(self):
         return "Record('{}', {}, {}, {})".format(self.type,

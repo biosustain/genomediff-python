@@ -57,3 +57,15 @@ class RecordTestCase(TestCase):
         self.assertEqual(1, snp_record.id)
         self.assertEqual('A', snp_record.new_seq)
         self.assertEqual('more', snp_record.test)
+
+
+class ParentResolveTestCase(TestCase):
+    def test_resolve(self):
+        file = StringIO("""
+#=GENOME_DIFF	1.0
+#=AUTHOR test
+SNP	1	2	NC_000913	223	A
+RA	2		NC_000913	223	0	G	A
+                        """.strip())
+        document = GenomeDiff.read(file)
+        self.assertEqual(document[1].parents, [document[2]])
