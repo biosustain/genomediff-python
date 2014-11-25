@@ -9,6 +9,7 @@ class Metadata(object):
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
+
 class Record(object):
     def __init__(self, type, id, document=None, parent_ids=None, **extra):
         self.document = document
@@ -17,6 +18,7 @@ class Record(object):
         self.parent_ids = parent_ids
         self._extra = extra
 
+    @property
     def parents(self):
         if not self.parents_ids is None:
             return [self.document[pid] for pid in self.parent_ids]
