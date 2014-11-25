@@ -10,7 +10,7 @@ class Metadata(object):
         return self.__dict__ == other.__dict__
 
 class Record(object):
-    def __init__(self, document, type, id, parent_ids=None, **extra):
+    def __init__(self, type, id, document=None, parent_ids=None, **extra):
         self.document = document
         self.type = type
         self.id = id
