@@ -12,7 +12,7 @@ Installation
 
 ::
     
-    pip3 install genomediff==0.1a
+    pip3 install genomediff
 
 
 Only Python 3.x is tested.
