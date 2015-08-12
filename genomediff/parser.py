@@ -1,3 +1,4 @@
+from collections import OrderedDict
 import re
 from genomediff.records import Metadata, Record
 
@@ -46,11 +47,11 @@ class GenomeDiffParser(object):
         return value
 
     def __iter__(self):
-        metadata_pattern = re.compile('^#=(\w+)\s+(.*)$')
-        mutation_pattern = re.compile('^(?P<type>[A-Z]{2,4})'
+        metadata_pattern = re.compile(r'^#=(\w+)\s+(.*)$')
+        mutation_pattern = re.compile(r'^(?P<type>[A-Z]{2,4})'
                                       '\t(?P<id>\d+)'
-                                      '\t(?P<parent_ids>\d+(,\s*\d+)*)?'
-                                      '\t(?P<extra>.*)?$')
+                                      '\t((?P<parent_ids>\d+(,\s*\d+)*)|\.?)'
+                                      '\t(?P<extra>.+)?$')
 
         for i, line in enumerate(self._fsock):
             if not line:
@@ -71,7 +72,7 @@ class GenomeDiffParser(object):
                         parent_ids = [int(id) for id in parent_ids.split(',')]
 
                     extra = match.group('extra').split('\t')
-                    extra_dct = {}
+                    extra_dct = OrderedDict()
 
                     for name in TYPE_SPECIFIC_FIELDS[type]:
                         value = extra.pop(0)

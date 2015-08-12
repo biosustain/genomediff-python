@@ -25,6 +25,24 @@ RA	2		NC_000913	223	0	G	A	frequency=0.1366
                          list(p)
         )
 
+    def test_parse_dot_missing_parent_ids(self):
+        file = StringIO("""
+#=GENOME_DIFF	1.0
+#=AUTHOR test
+SNP	1	23423	NC_000913	223	A	gene_name=mhpE
+RA	2	.	NC_000913	223	0	G	A	frequency=0.1366
+                        """.strip())
+        p = GenomeDiffParser(fsock=file)
+        self.assertEqual([
+                             Metadata('GENOME_DIFF', '1.0'),
+                             Metadata('AUTHOR', 'test'),
+                             Record('SNP', 1, parent_ids=[23423], new_seq='A', seq_id='NC_000913', position=223, gene_name='mhpE'),
+                             Record('RA', 2, new_base='A', frequency=0.1366, position=223, seq_id='NC_000913',
+                                    insert_position=0,
+                                    ref_base='G')],
+                         list(p)
+        )
+
 
 class GenomeDiffTestCase(TestCase):
     def test_document(self):

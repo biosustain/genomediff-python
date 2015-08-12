@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='genomediff',
-    version='0.2.0',
+    version='0.2.1',
     packages=['genomediff'],
     url='https://github.com/biosustain/genomediff-python.git',
     license='MIT',
