@@ -1,4 +1,4 @@
-from unittest import TestCase
+from unittest import TestCase, main
 from io import StringIO
 
 from genomediff import Metadata, GenomeDiff
@@ -87,3 +87,7 @@ RA	2		NC_000913	223	0	G	A
                         """.strip())
         document = GenomeDiff.read(file)
         self.assertEqual(document[1].parents, [document[2]])
+
+
+if __name__ == '__main__':
+    main()
