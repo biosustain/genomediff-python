@@ -44,6 +44,9 @@ class GenomeDiffParser(object):
                 return type_(value)
             except ValueError:
                 pass
+
+        if value == '.' or value == '':
+            value = None
         return value
 
     def __iter__(self):
