@@ -11,12 +11,12 @@ class Metadata(object):
 
 
 class Record(object):
-    def __init__(self, type, id, document=None, parent_ids=None, **extra):
+    def __init__(self, type, id, document=None, parent_ids=None, **attributes):
         self.document = document
         self.type = type
         self.id = id
         self.parent_ids = parent_ids
-        self._extra = extra
+        self.attributes = attributes
 
     @property
     def parents(self):
@@ -26,13 +26,18 @@ class Record(object):
             return []
 
     def __getattr__(self, item):
-       return self._extra[item]
+        try:
+            return self.attributes[item]
+        except KeyError:
+            raise AttributeError
 
-    def __repr__(self):
-        return "Record('{}', {}, {}, {})".format(self.type,
-                                                self.id,
-                                                self.parent_ids,
-                                                ', '.join('{}={}'.format(k, repr(v)) for k, v in self._extra.items()))
 
-    def __eq__(self, other):
-        return self.__dict__ == other.__dict__
+def __repr__(self):
+    return "Record('{}', {}, {}, {})".format(self.type,
+                                             self.id,
+                                             self.parent_ids,
+                                             ', '.join('{}={}'.format(k, repr(v)) for k, v in self._extra.items()))
+
+
+def __eq__(self, other):
+    return self.__dict__ == other.__dict__
