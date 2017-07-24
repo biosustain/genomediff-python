@@ -21,6 +21,7 @@ TYPE_SPECIFIC_FIELDS = {
            'side_2_position',
            'side_2_strand',
            'overlap'),
+    'CN': ('seq id', 'start', 'end', 'tile_size', 'copy_number', 'p_value', 'rel_cov', 'gene', 'product'),
     'UN': ('seq_id', 'start', 'end'),
     'CURA': ('expert',),
     'FPOS': ('expert',),
